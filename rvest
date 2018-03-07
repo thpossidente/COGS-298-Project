@@ -1,0 +1,28 @@
+# Non-functional so far :(
+
+library("rvest")
+url <- 'https://www.basketball-reference.com/leagues/NBA_2018_games.html'
+session <- html_session(url)
+session1 <- follow_link(session, css = "tr:nth-child(1) .center a")
+box.score <- session1 %>% html_nodes('#box_bos_basic tfoot .right') %>% html_text()
+
+data <- data.frame()
+colnames(data) <- c('MP',	'FG',	'FGA',	'FG%',	'3P',	'3PA',
+                    '3P%',	'FT',	'FTA',	'FT%',	'ORB',
+                    'DRB',	'TRB',	'AST',	'STL',	'BLK',
+                    'TOV',	'PF',	'PTS')
+data <- matrix()
+url <- 'https://www.basketball-reference.com/leagues/NBA_2018_games.html'
+session <- html_session(url)
+for(i in 1:2){
+  session.new <- follow_link(session, css = paste("tr:nth-child(", toString(i), ") .center a"))
+  team1 <- html_nodes("#all_box_bos_basic h2") %>% html_text()
+  stats1 <- html_nodes("#box_bos_basic tfoot .right") %>% html_table()
+  team2 <- html_nodes("#all_box_cle_basic h2") %>% html_text()
+  stats2 <- html_node("#box_cle_basic tfoot .right") %>% html_table()
+  box.score1 <- data.frame(team = team1, stats = stats1)
+  box.score2 <- data.frame(team = team2, stats = stats2)
+  data <- rbind(data, box.score1)
+  data <- rbind(data, box.score2)
+  session.return <- html_session(url)
+}
