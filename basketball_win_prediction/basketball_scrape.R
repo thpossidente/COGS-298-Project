@@ -55,4 +55,4 @@ for (i in 1:104) {
 
 main.table = subset(main.table, select=-c(Minutes))
 
-write.csv(main.table, "Data/GameData.csv")
+write.csv(main.table, "Data/GameDataOctober.csv")
