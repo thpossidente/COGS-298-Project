@@ -865,6 +865,8 @@ for (i in 2: nrow(portland)) {
 
 portland_culm_stats = subset(portland_culm_stats, select=-c(TotalFG, TotalFGA, TotalThreePoint, TotalThreePA, TotalFT, TotalFTA, TotalORB, TotalDRB, TotalAssists, TotalSTL, TotalBLK, TotalTOV, TotalPF, TotalPTS ))
 
+write.csv(portland_culm_stats, "Data/CulmStats/portland.csv");
+
 phoenix_culm_stats <- data.frame(ByGame=1, TotalFG=0, FGPerGame=0, TotalFGA=0, FGAPerGame=0, FGP=0, TotalThreePoint=0, ThreePointPerGame=0, TotalThreePA=0,
                                   ThreePointAPerGame=0, ThreePointP=0, TotalFT=0, FTPerGame=0, TotalFTA=0, FTAPerGame=0,
                                   FTP=0, TotalORB=0, ORBPerGame =0, TotalDRB=0, DRBPerGame=0, TRBPerGame=0, TotalAssists=0, ASTPerGame = 0,
